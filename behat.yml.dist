@@ -1,0 +1,20 @@
+default:
+    suites:
+        default:
+            contexts:
+                - App\Tests\Behat\DemoContext
+                - Behat\MinkExtension\Context\MinkContext
+                - App\Tests\Behat\SecurityContext
+                - behatch:context:json
+                - behatch:context:rest
+
+    extensions:
+        FriendsOfBehat\SymfonyExtension:
+            kernel:
+                environment: test
+        Behat\MinkExtension:
+            sessions:
+                default:
+                    symfony: ~
+        Behatch\Extension: ~
+        DAMA\DoctrineTestBundle\Behat\ServiceContainer\DoctrineExtension: ~

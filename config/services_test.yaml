@@ -1,0 +1,15 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\Tests\Behat\:
+        resource: '../tests/Behat/*'
+
+    App\Tests\Behat\AbstractContext:
+        public: true
+        arguments:
+            - "@kernel"
+            - "@doctrine.orm.entity_manager"
+            - "@doctrine.dbal.default_connection"
+            - "@service_container"
