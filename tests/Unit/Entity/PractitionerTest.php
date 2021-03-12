@@ -31,8 +31,9 @@ class PractitionerTest extends KernelTestCase
             ->getManager();
     }
 
-    public function testAddNewPatient(): void
+    public function testAddNewPractioner(): void
     {
+        /** @var Practitioner $practitioner */
         $practitioner = $this->entityManager->getRepository(Practitioner::class)->findOneBy(
             [
                 'id' => 1
@@ -40,6 +41,7 @@ class PractitionerTest extends KernelTestCase
         );
 
         $this->assertInstanceOf(Practitioner::class, $practitioner);
+        $this->assertContains('ROLE_PRACTITIONER', $practitioner->getRoles());
     }
 
     protected function tearDown(): void

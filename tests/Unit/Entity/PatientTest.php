@@ -2,7 +2,7 @@
 
 namespace App\Tests\Unit\Entity;
 
-use App\Entity\User\Practitioner;
+use App\Entity\User\Patient;
 use Doctrine\Persistence\ObjectManager;
 use Liip\TestFixturesBundle\Test\FixturesTrait;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -22,7 +22,7 @@ class PatientTest extends KernelTestCase
 
         $this->loadFixtures(
             [
-                "App\DataFixtures\PractitionerFixture",
+                "App\DataFixtures\PatientFixture",
             ]
         );
 
@@ -33,13 +33,17 @@ class PatientTest extends KernelTestCase
 
     public function testAddNewPatient(): void
     {
-        $practitioner = $this->entityManager->getRepository(Practitioner::class)->findOneBy(
+        /** @var Patient $patient */
+        $patient = $this->entityManager->getRepository(Patient::class)->findOneBy(
             [
                 'id' => 1
             ]
         );
 
-        $this->assertInstanceOf(Practitioner::class, $practitioner);
+        $this->assertInstanceOf(Patient::class, $patient);
+        $this->assertContains('ROLE_PATIENT', $patient->getRoles());
+        $this->assertEquals('M', $patient->getGender());
+        $this->assertEquals('Mr', $patient->getCivility());
     }
 
     protected function tearDown(): void
