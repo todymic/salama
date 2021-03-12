@@ -7,7 +7,7 @@ use Doctrine\Persistence\ObjectManager;
 use Liip\TestFixturesBundle\Test\FixturesTrait;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class PatientTest extends KernelTestCase
+class PractitionerTest extends KernelTestCase
 {
     use FixturesTrait;
 
