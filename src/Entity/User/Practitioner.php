@@ -4,7 +4,10 @@ namespace App\Entity\User;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Entity\Appointment;
+use App\Entity\Availability;
+use App\Entity\Degree;
 use App\Entity\Language;
+use App\Entity\Locality;
 use App\Entity\Speciality;
 use App\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -41,12 +44,35 @@ class Practitioner extends User implements UserInterface
      */
     private $appointments;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Availability::class, mappedBy="practitioner", orphanRemoval=true)
+     */
+    private $availabilities;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Locality::class, mappedBy="practitioner", orphanRemoval=true)
+     */
+    private $localities;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Degree::class, mappedBy="practitioner", orphanRemoval=true)
+     */
+    private $degrees;
+
     public function __construct()
     {
         $this->roles[] = 'ROLE_PRACTITIONER';
         $this->languages = new ArrayCollection();
         $this->specialities = new ArrayCollection();
         $this->appointments = new ArrayCollection();
+        $this->availabilities = new ArrayCollection();
+        $this->localities = new ArrayCollection();
+        $this->degrees = new ArrayCollection();
     }
 
     /**
@@ -124,6 +150,108 @@ class Practitioner extends User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($appointment->getPractitioner() === $this) {
                 $appointment->setPractitioner(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Availability[]
+     */
+    public function getAvailabilities(): Collection
+    {
+        return $this->availabilities;
+    }
+
+    public function addAvailability(Availability $availability): self
+    {
+        if (!$this->availabilities->contains($availability)) {
+            $this->availabilities[] = $availability;
+            $availability->setPractitioner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvailability(Availability $availability): self
+    {
+        if ($this->availabilities->removeElement($availability)) {
+            // set the owning side to null (unless already changed)
+            if ($availability->getPractitioner() === $this) {
+                $availability->setPractitioner(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Locality[]
+     */
+    public function getLocalities(): Collection
+    {
+        return $this->localities;
+    }
+
+    public function addLocality(Locality $locality): self
+    {
+        if (!$this->localities->contains($locality)) {
+            $this->localities[] = $locality;
+            $locality->setPractitioner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLocality(Locality $locality): self
+    {
+        if ($this->localities->removeElement($locality)) {
+            // set the owning side to null (unless already changed)
+            if ($locality->getPractitioner() === $this) {
+                $locality->setPractitioner(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Degree[]
+     */
+    public function getDegrees(): Collection
+    {
+        return $this->degrees;
+    }
+
+    public function addDegree(Degree $degree): self
+    {
+        if (!$this->degrees->contains($degree)) {
+            $this->degrees[] = $degree;
+            $degree->setPractitioner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDegree(Degree $degree): self
+    {
+        if ($this->degrees->removeElement($degree)) {
+            // set the owning side to null (unless already changed)
+            if ($degree->getPractitioner() === $this) {
+                $degree->setPractitioner(null);
             }
         }
 

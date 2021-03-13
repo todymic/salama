@@ -17,10 +17,13 @@ class PractitionerFixture extends UserFixture
 
         $partitionner->setFirstName($fake->name());
         $partitionner->setLastName($fake->name());
-        $partitionner->setEmail('t@t.t');
+        $partitionner->setEmail($fake->email);
         $partitionner->setPassword($this->passwordEncoder->encodePassword($partitionner, 'test'));
+        $partitionner->setRoles(['ROLE_PRACTITIONER']);
 
         $manager->persist($partitionner);
+
+        $this->setReference(Practitioner::class, $partitionner);
 
         $manager->flush();
     }

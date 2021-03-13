@@ -3,6 +3,7 @@
 namespace App\Tests\Api;
 
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
+use Doctrine\Persistence\ObjectManager;
 use Liip\TestFixturesBundle\Test\FixturesTrait;
 
 class SearchPractitionerTest extends ApiTestCase
@@ -10,7 +11,7 @@ class SearchPractitionerTest extends ApiTestCase
     use FixturesTrait;
 
     /**
-     * @var \Doctrine\Persistence\ObjectManager
+     * @var ObjectManager
      */
     protected $entityManager;
 
@@ -18,15 +19,18 @@ class SearchPractitionerTest extends ApiTestCase
     {
         $kernel = self::bootKernel();
 
-        $this->loadFixtures([
-            "App\DataFixtures\PractitionerFixture",
-        ]);
+        $this->loadFixtures(
+            [
+                "App\DataFixtures\PractitionerFixture",
+            ]
+        );
 
         $this->entityManager = $kernel->getContainer()
             ->get('doctrine')
             ->getManager();
     }
-    /** @test  */
+
+    /** @test */
     public function getListPractioners(): void
     {
         $response = static::createClient()->request('GET', '/api/practitioners');
@@ -35,7 +39,7 @@ class SearchPractitionerTest extends ApiTestCase
         $this->assertJsonContains(['@id' => '/api/practitioners']);
     }
 
-    /** @test  */
+    /** @test */
     public function getOnePractioner(): void
     {
         $response = static::createClient()->request('GET', '/api/practitioners/1');
