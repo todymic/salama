@@ -21,6 +21,9 @@
             <directory>tests/Unit</directory>
         </testsuite>
         <testsuite name="functional">
+            <directory>tests/Functional</directory>
+        </testsuite>
+        <testsuite name="api">
             <directory>tests/Api</directory>
         </testsuite>
     </testsuites>
@@ -31,12 +34,17 @@
         </whitelist>
     </filter>
 
-<!--    <extensions>-->
-<!--        <extension class="DAMA\DoctrineTestBundle\PHPUnit\PHPUnitExtension"/>-->
-<!--    </extensions>-->
+    <logging>
+        <log type="coverage-html" target="./public/coverage"
+             lowUpperBound="50" highLowerBound="80"/>
+        <log type="testdox-html" target="./public/testdox.html"/>
+    </logging>
+    <!--    <extensions>-->
+    <!--        <extension class="DAMA\DoctrineTestBundle\PHPUnit\PHPUnitExtension"/>-->
+    <!--    </extensions>-->
 
     <listeners>
-        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />
+        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener"/>
     </listeners>
 
     <!-- Run `composer require symfony/panther` before enabling this extension -->

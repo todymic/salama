@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Reason;
 use App\Entity\Speciality;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -12,6 +13,11 @@ class SpecialityFixture extends Fixture
     {
         $speciality = new Speciality();
         $speciality->setTitle('Gynecologue');
+
+        $reason = new Reason();
+        $reason->setDescription('consultation');
+        $reason->setConstant('consultation');
+        $speciality->addReason($reason);
 
         $manager->persist($speciality);
 

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Entity\User\Practitioner;
 use App\Repository\SpecialityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -10,7 +11,22 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *   subresourceOperations={
+ *       "practitioners_get_subresource"={
+ *           "method"="GET",
+ *           "normalization_context"={
+ *               "groups"={"practitioner:read"}
+ *           }
+ *       },
+ *     "reasons_get_subresource"={
+ *           "method"="GET",
+ *           "normalization_context"={
+ *               "groups"={"reason:read"}
+ *           }
+ *       },
+ *   }
+ * )
  * @ORM\Entity(repositoryClass=SpecialityRepository::class)
  */
 class Speciality
@@ -23,16 +39,22 @@ class Speciality
     private $id;
 
     /**
+     * @ApiSubresource()
      * @ORM\ManyToMany(targetEntity=Practitioner::class, inversedBy="specialities")
      * @ORM\JoinTable(name="practitioners_specialities",
      *      joinColumns={@ORM\JoinColumn(name="speciality_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="practitioner_id", referencedColumnName="id")}
      * )
+     *
      */
     private $practitioners;
 
     /**
-     * @ORM\OneToMany(targetEntity=Reason::class, mappedBy="category", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Reason::class,
+     *     mappedBy="category",
+     *     orphanRemoval=true,
+     *     cascade={"persist", "remove"})
+     * @ApiSubresource()
      */
     private $reasons;
 

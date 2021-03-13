@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Entity\User\Practitioner;
 use App\Repository\LocalityRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
  * @ORM\Entity(repositoryClass=LocalityRepository::class)
@@ -20,37 +22,44 @@ class Locality
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("availability:read")
      */
     private $streetType;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("availability:read")
      */
     private $streetName;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups("availability:read")
      */
     private $zipcode;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups("availability:read")
      */
     private $streetNumber;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("availability:read")
      */
     private $city;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("availability:read")
      */
     private $country;
 
     /**
      * @ORM\ManyToOne(targetEntity=Practitioner::class, inversedBy="localities")
      * @ORM\JoinColumn(nullable=false)
+     * @MaxDepth(1)
      */
     private $practitioner;
 

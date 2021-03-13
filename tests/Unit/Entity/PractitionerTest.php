@@ -2,29 +2,17 @@
 
 namespace App\Tests\Unit\Entity;
 
+use App\Entity\Degree;
+use App\Entity\Language;
+use App\Entity\Speciality;
 use App\Entity\User\Practitioner;
-use Doctrine\Persistence\ObjectManager;
-use Liip\TestFixturesBundle\Test\FixturesTrait;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class PractitionerTest extends KernelTestCase
+/**
+ * Class PractitionerTest
+ * @package App\Tests\Unit\Entity
+ */
+class PractitionerTest extends EntityTestCase
 {
-    use FixturesTrait;
-
-    /**
-     * @var ObjectManager
-     */
-    private $entityManager;
-
-    public function setUp(): void
-    {
-        $kernel = self::bootKernel();
-
-        $this->entityManager = $kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
-    }
-
     public function testNewPractitioner(): void
     {
         $this->loadFixtures(
@@ -42,14 +30,20 @@ class PractitionerTest extends KernelTestCase
 
         $this->assertInstanceOf(Practitioner::class, $practitioner);
         $this->assertContains('ROLE_PRACTITIONER', $practitioner->getRoles());
-    }
 
-    protected function tearDown(): void
-    {
-        parent::tearDown();
+        /** @var Degree $degree */
+        $degree = $practitioner->getDegrees()->first();
+        $this->assertInstanceOf(Degree::class, $degree);
+        $this->assertEquals('Diplome de Medecin', $degree->getTitle());
 
-        // doing this is recommended to avoid memory leaks
-        $this->entityManager->close();
-        $this->entityManager = null;
+        /** @var Language $language */
+        $language = $practitioner->getLanguages()->first();
+        $this->assertInstanceOf(Language::class, $language);
+        $this->assertEquals('fr', $language->getValue());
+
+        /** @var Speciality $speciality */
+        $speciality = $practitioner->getSpecialities()->first();
+        $this->assertInstanceOf(Speciality::class, $speciality);
+        $this->assertEquals('Gynecologue', $speciality->getTitle());
     }
 }

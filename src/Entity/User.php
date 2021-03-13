@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity()
@@ -17,16 +18,19 @@ abstract class User
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"practitioner:read"})
      */
     protected $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups({"practitioner:read", "practitioner:write"})
      */
     protected $email;
 
     /**
      * @ORM\Column(type="json")
+     * @Groups({"practitioner:read", "practitioner:write"})
      */
     protected $roles = [];
 
@@ -38,11 +42,13 @@ abstract class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"practitioner:read", "practitioner:write"})
      */
     protected $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"practitioner:read", "practitioner:write"})
      */
     protected $lastName;
 
