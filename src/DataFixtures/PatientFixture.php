@@ -11,18 +11,21 @@ class PatientFixture extends UserFixture
 
     public function load(ObjectManager $manager)
     {
-        /** @var  $fake */
+        /** @var $fake */
         $fake = Faker\Factory::create();
         $patient = new Patient();
 
         $patient->setFirstName($fake->name());
         $patient->setLastName($fake->name());
-        $patient->setEmail('t@t.t');
+        $patient->setEmail($fake->email);
         $patient->setPassword($this->passwordEncoder->encodePassword($patient, 'test'));
         $patient->setGender('M');
         $patient->setCivility('Mr');
+        $patient->setRoles(['ROLE_PATIENT']);
 
         $manager->persist($patient);
+
+        $this->setReference(Patient::class, $patient);
 
         $manager->flush();
     }

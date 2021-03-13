@@ -20,19 +20,19 @@ class PractitionerTest extends KernelTestCase
     {
         $kernel = self::bootKernel();
 
+        $this->entityManager = $kernel->getContainer()
+            ->get('doctrine')
+            ->getManager();
+    }
+
+    public function testNewPractitioner(): void
+    {
         $this->loadFixtures(
             [
                 "App\DataFixtures\PractitionerFixture",
             ]
         );
 
-        $this->entityManager = $kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
-    }
-
-    public function testAddNewPractioner(): void
-    {
         /** @var Practitioner $practitioner */
         $practitioner = $this->entityManager->getRepository(Practitioner::class)->findOneBy(
             [

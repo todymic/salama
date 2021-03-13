@@ -20,12 +20,6 @@ class PatientTest extends KernelTestCase
     {
         $kernel = self::bootKernel();
 
-        $this->loadFixtures(
-            [
-                "App\DataFixtures\PatientFixture",
-            ]
-        );
-
         $this->entityManager = $kernel->getContainer()
             ->get('doctrine')
             ->getManager();
@@ -33,6 +27,12 @@ class PatientTest extends KernelTestCase
 
     public function testAddNewPatient(): void
     {
+        $this->loadFixtures(
+            [
+                "App\DataFixtures\PatientFixture",
+            ]
+        );
+
         /** @var Patient $patient */
         $patient = $this->entityManager->getRepository(Patient::class)->findOneBy(
             [
