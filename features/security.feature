@@ -3,9 +3,11 @@ Feature: Security API
   As a user
   I need to be authenticated to before doing anything under firewall
 
-  @fixture @authenticated
   Scenario: Retrieve a list Partitionner
     Given the Practitioner state
     When I send a "GET" request to "/api/practitioners"
     Then the response should be in JSON
-    And the response status code should be 200
+    And the JSON should be valid according to this schema:
+    """
+    {"qsdfqsdfqf": "fqsdfqsdf"}
+    """

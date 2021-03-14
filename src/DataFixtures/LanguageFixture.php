@@ -20,7 +20,7 @@ class LanguageFixture extends Fixture
         $language = new Language();
         $language->setValue('fr');
 
-        $this->setReference(Language::class, $language);
+        $this->addReference(Language::class, $language);
         $manager->persist($language);
 
 

@@ -36,10 +36,10 @@
         "symfony/serializer": "5.2.*",
         "symfony/twig-bundle": "^5.2",
         "symfony/validator": "5.2.*",
-        "symfony/yaml": "5.2.*",
-        "ext-http": "*"
+        "symfony/yaml": "5.2.*"
     },
     "require-dev": {
+        "ext-json": "*",
         "behat/behat": "^3.8",
         "behat/mink": "^1.8",
         "behat/mink-extension": "^2.3",
@@ -48,6 +48,7 @@
         "friends-of-behat/mink-browserkit-driver": "^1.5",
         "friends-of-behat/symfony-extension": "^2.0",
         "lchrusciel/api-test-case": "^5.1",
+        "liip/functional-test-bundle": "^4.3",
         "liip/test-fixtures-bundle": "^1.0.0",
         "nelmio/alice": "^3.8",
         "squizlabs/php_codesniffer": "^3.5",
@@ -57,8 +58,7 @@
         "symfony/phpunit-bridge": "^5.2",
         "symfony/stopwatch": "^5.2",
         "symfony/var-dumper": "^5.2",
-        "symfony/web-profiler-bundle": "^5.2",
-        "ext-json": "*"
+        "symfony/web-profiler-bundle": "^5.2"
     },
     "config": {
         "optimize-autoloader": true,

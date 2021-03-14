@@ -209,6 +209,9 @@
             "config/packages/lexik_jwt_authentication.yaml"
         ]
     },
+    "liip/functional-test-bundle": {
+        "version": "4.3.1"
+    },
     "liip/test-fixtures-bundle": {
         "version": "1.11.2"
     },

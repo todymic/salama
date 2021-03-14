@@ -21,7 +21,7 @@ class SpecialityFixture extends Fixture
 
         $manager->persist($speciality);
 
-        $this->setReference(Speciality::class, $speciality);
+        $this->addReference(Speciality::class, $speciality);
 
         $manager->flush();
     }

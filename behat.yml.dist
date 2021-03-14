@@ -17,4 +17,3 @@ default:
                 default:
                     symfony: ~
         Behatch\Extension: ~
-        DAMA\DoctrineTestBundle\Behat\ServiceContainer\DoctrineExtension: ~
