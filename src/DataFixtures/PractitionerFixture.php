@@ -59,7 +59,7 @@ class PractitionerFixture extends UserFixture implements DependentFixtureInterfa
 
         $manager->persist($partitionner);
 
-        $this->setReference(Practitioner::class, $partitionner);
+        $this->addReference(Practitioner::class, $partitionner);
 
 
         $manager->flush();

@@ -25,7 +25,7 @@ class PatientFixture extends UserFixture
 
         $manager->persist($patient);
 
-        $this->setReference(Patient::class, $patient);
+        $this->addReference(Patient::class, $patient);
 
         $manager->flush();
     }

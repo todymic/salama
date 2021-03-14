@@ -5,10 +5,17 @@ namespace App\Tests\Behat;
 use Behat\Behat\Context\Context;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Loader;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\DBAL\Driver\Connection;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Tools\SchemaTool;
+use Doctrine\Persistence\Mapping\ClassMetadata;
+use Exception;
 use InvalidArgumentException;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\NullOutput;
+use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 
@@ -36,6 +43,14 @@ abstract class AbstractContext implements Context
      * @var ContainerInterface
      */
     private $container;
+    /**
+     * @var SchemaTool
+     */
+    private $schemaTool;
+    /**
+     * @var ClassMetadata[]
+     */
+    private $metadata;
 
     /**
      * SecurityContext constructor.
@@ -55,10 +70,46 @@ abstract class AbstractContext implements Context
         $this->application = new Application($kernel);
         $this->application->setAutoExit(false);
 
-
         $this->container = $kernel->getContainer();
 
         $this->entityManager = $this->container->get('doctrine.orm.default_entity_manager');
+    }
+
+    /**
+     * @BeforeScenario
+     * @throws Exception
+     */
+    public function initDb()
+    {
+//        $metaData = $this->entityManager->getMetadataFactory()->getAllMetadata();
+//        $schemaTool = new SchemaTool($this->entityManager);
+//        $schemaTool->dropDatabase();
+//        if (!empty($metaData)) {
+//            $schemaTool->createSchema($metaData);
+//        }
+
+
+        $this->executeCommand('d:d:drop', ['--force' => true]);
+        $this->executeCommand('d:d:create');
+        $this->executeCommand('d:sch:create');
+    }
+
+
+    /**
+     * @param string $commandName
+     * @param array $parameters
+     * @throws Exception
+     */
+    private function executeCommand(string $commandName, array $parameters = [])
+    {
+        $options = ['--env' => 'test'];
+        if (!empty($parameters)) {
+            $options = array_merge($options, $parameters);
+        }
+
+        $command = $this->application->find($commandName);
+        $commandTester = new CommandTester($command);
+        $commandTester->execute($options);
     }
 
 
@@ -83,7 +134,9 @@ abstract class AbstractContext implements Context
             $loader->addFixture(new $className());
         }
 
-        $executor = new ORMExecutor($this->entityManager);
+        $purger = new ORMPurger($this->entityManager);
+
+        $executor = new ORMExecutor($this->entityManager, $purger);
         $executor->execute($loader->getFixtures(), true);
     }
 }
