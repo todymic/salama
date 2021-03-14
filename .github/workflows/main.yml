@@ -68,3 +68,4 @@ jobs:
           php vendor/bin/behat
         env:
           DATABASE_URL: 'mysql://root:root@127.0.0.1:3306/salama_test?serverVersion=5.7'
+          CORS_ALLOW_ORIGIN: '^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?$'
