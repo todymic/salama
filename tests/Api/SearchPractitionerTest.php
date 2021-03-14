@@ -51,6 +51,7 @@ class SearchPractitionerTest extends ApiTestCase
         $response = static::createClient()->request('GET', '/api/practitioners');
 
         $this->assertResponseIsSuccessful();
+        $this->assertResponseStatusCodeSame(200);
         $this->assertJsonContains(['@id' => '/api/practitioners']);
         $this->assertMatchesResourceCollectionJsonSchema(Practitioner::class);
     }
