@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Entity\User\Practitioner;
 use App\Repository\LanguageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -9,6 +11,16 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ApiResource(
+ *     subresourceOperations={
+"practitioners_get_subresource"={
+ *           "method"="GET",
+ *           "normalization_context"={
+ *               "groups"={"practitioner:read"}
+ *           }
+ *       }
+ *     }
+ * )
  * @ORM\Entity(repositoryClass=LanguageRepository::class)
  */
 class Language
@@ -27,6 +39,7 @@ class Language
 
     /**
      * @ORM\ManyToMany(targetEntity=Practitioner::class, mappedBy="languages")
+     * @ApiSubresource()
      */
     private $practitioners;
 

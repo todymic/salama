@@ -7,9 +7,12 @@ use App\Entity\User\Practitioner;
 use App\Repository\AvailabilityRepository;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *      normalizationContext={"groups"={"availability:read"}},
+ * )
  * @ORM\Entity(repositoryClass=AvailabilityRepository::class)
  */
 class Availability
@@ -20,11 +23,13 @@ class Availability
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("availability:read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="date")
+     * @Groups("availability:read")
      */
     private $day;
 
@@ -35,6 +40,7 @@ class Availability
 
     /**
      * @ORM\Column(type="string", length=255, columnDefinition="ENUM('OPEN','BUSY')")
+     * @Groups("availability:read")
      */
     private $status;
 
@@ -46,12 +52,14 @@ class Availability
 
     /**
      * @ORM\OneToOne(targetEntity=Appointment::class, mappedBy="availability", cascade={"persist", "remove"})
+     * @Groups("availability:read")
      */
     private $appointment;
 
     /**
      * @ORM\ManyToOne(targetEntity=Locality::class)
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("availability:read")
      */
     private $locality;
 

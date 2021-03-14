@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Availability;
-use App\Entity\Locality;
 use App\Entity\User\Practitioner;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -18,22 +17,18 @@ class AvailabilityFixture extends Fixture implements DependentFixtureInterface
 
         /** @var Practitioner $practitioner */
         $practitioner = $this->getReference(Practitioner::class);
-        /** @var Locality $locality */
-        $locality = $this->getReference(Locality::class . '_1');
-
 
         $tab = [Availability::BUSY, Availability::OPEN];
 
         for ($i = 0; $i < 50; $i++) {
             $availability = new Availability();
 
-
             shuffle($tab);
             $availability->setStatus($tab[0]);
             $availability->setDay($fake->dateTimeBetween('now', '+1 month'));
             $availability->setHour($fake->dateTimeBetween('now', '+1 month'));
             $availability->setPractitioner($practitioner);
-            $availability->setLocality($locality);
+            $availability->setLocality($practitioner->getLocalities()->first());
 
             $this->setReference(Availability::class . '_' . $availability->getStatus(), $availability);
 
@@ -49,8 +44,7 @@ class AvailabilityFixture extends Fixture implements DependentFixtureInterface
     public function getDependencies(): array
     {
         return [
-            PractitionerFixture::class,
-            LocalityFixture::class
+            PractitionerFixture::class
         ];
     }
 }

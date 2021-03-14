@@ -2,16 +2,33 @@
 
 namespace App\Tests\Unit\Entity;
 
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use App\Entity\Reason;
+use App\Entity\Speciality;
 
-class ReasonTest extends KernelTestCase
+class ReasonTest extends EntityTestCase
 {
-    public function testSomething(): void
+    /**
+     * @test
+     */
+    public function loadReason()
     {
-        $kernel = self::bootKernel();
+        $this->loadFixtures(
+            [
+                "App\DataFixtures\ReasonFixture",
+            ]
+        );
 
-        $this->assertSame('test', $kernel->getEnvironment());
-        //$routerService = self::$container->get('router');
-        //$myCustomService = self::$container->get(CustomService::class);
+        /** @var Reason $reason */
+        $reason = $this->entityManager->getRepository(Reason::class)->findOneBy(
+            [
+                'id' => 1
+            ]
+        );
+
+        $this->assertInstanceOf(Reason::class, $reason);
+        $this->assertEquals('consultation', $reason->getConstant());
+
+        $this->assertInstanceOf(Speciality::class, $reason->getCategory());
+        $this->assertEquals('Gynecologue', $reason->getCategory()->getTitle());
     }
 }

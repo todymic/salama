@@ -2,16 +2,25 @@
 
 namespace App\Tests\Unit\Entity;
 
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use App\Entity\Language;
 
-class LanguageTest extends KernelTestCase
+class LanguageTest extends EntityTestCase
 {
-    public function testSomething(): void
+    /** @test */
+    public function loadLanguage()
     {
-        $kernel = self::bootKernel();
+        $this->loadFixtures(
+            [
+                "App\DataFixtures\LanguageFixture",
+            ]
+        );
 
-        $this->assertSame('test', $kernel->getEnvironment());
-        //$routerService = self::$container->get('router');
-        //$myCustomService = self::$container->get(CustomService::class);
+        /** @var Language[] $language */
+        $language = $this->entityManager->getRepository(Language::class)->findAll();
+
+
+        $this->assertInstanceOf(Language::class, $language[0]);
+        $this->assertEquals(1, $language[0]->getId());
+        $this->assertEquals('fr', $language[0]->getValue());
     }
 }
