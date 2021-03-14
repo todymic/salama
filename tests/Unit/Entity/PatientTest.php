@@ -2,48 +2,28 @@
 
 namespace App\Tests\Unit\Entity;
 
-use App\Entity\User\Practitioner;
-use Liip\TestFixturesBundle\Test\FixturesTrait;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use App\Entity\User\Patient;
 
-class PatientTest extends KernelTestCase
+class PatientTest extends EntityTestCase
 {
-    use FixturesTrait;
-
-    /**
-     * @var \Doctrine\Persistence\ObjectManager
-     */
-    private $entityManager;
-
-    public function setUp(): void
-    {
-        $kernel = self::bootKernel();
-
-        $this->loadFixtures([
-            "App\DataFixtures\PractitionerFixture",
-        ]);
-
-        $this->entityManager = $kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
-    }
-
     public function testAddNewPatient(): void
     {
+        $this->loadFixtures(
+            [
+                "App\DataFixtures\PatientFixture",
+            ]
+        );
 
-        $practitioner = $this->entityManager->getRepository(Practitioner::class)->findOneBy([
-            'id' => 1
-        ]);
+        /** @var Patient $patient */
+        $patient = $this->entityManager->getRepository(Patient::class)->findOneBy(
+            [
+                'id' => 1
+            ]
+        );
 
-        $this->assertInstanceOf(Practitioner::class, $practitioner);
-    }
-
-    protected function tearDown(): void
-    {
-        parent::tearDown();
-
-        // doing this is recommended to avoid memory leaks
-        $this->entityManager->close();
-        $this->entityManager = null;
+        $this->assertInstanceOf(Patient::class, $patient);
+        $this->assertContains('ROLE_PATIENT', $patient->getRoles());
+        $this->assertEquals('M', $patient->getGender());
+        $this->assertEquals('Mr', $patient->getCivility());
     }
 }

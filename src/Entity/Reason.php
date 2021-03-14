@@ -29,16 +29,32 @@ class Reason
      */
     private $description;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Speciality::class, inversedBy="reasons")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getConstant(): ?string
     {
         return $this->constant;
     }
 
+    /**
+     * @param string $constant
+     * @return $this
+     */
     public function setConstant(string $constant): self
     {
         $this->constant = $constant;
@@ -46,14 +62,40 @@ class Reason
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
+    /**
+     * @param string|null $description
+     * @return $this
+     */
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Speciality|null
+     */
+    public function getCategory(): ?Speciality
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param Speciality|null $category
+     * @return $this
+     */
+    public function setCategory(?Speciality $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
