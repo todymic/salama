@@ -110,11 +110,11 @@ abstract class AbstractContext implements Context
      */
     protected function loadFixture(string $name, $dependecies = [])
     {
-        if (!class_exists('App\DataFixtures\\'.$name.'Fixture')) {
-            throw new InvalidArgumentException($name." don't exist");
+        if (!class_exists('App\DataFixtures\\' . $name . 'Fixture')) {
+            throw new InvalidArgumentException($name . " don't exist");
         }
 
-        $className = 'App\DataFixtures\\'.$name.'Fixture';
+        $className = 'App\DataFixtures\\' . $name . 'Fixture';
 
         $loader = new Loader();
 

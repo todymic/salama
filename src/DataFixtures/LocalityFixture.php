@@ -27,7 +27,7 @@ class LocalityFixture extends Fixture implements DependentFixtureInterface
             $locality->setZipcode((int) $fake->postcode);
             $locality->setPractitioner($practitioner);
 
-            $this->addReference(Locality::class.'_'.$i, $locality);
+            $this->addReference(Locality::class . '_' . $i, $locality);
 
             $manager->persist($locality);
         }

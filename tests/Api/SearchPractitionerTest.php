@@ -74,7 +74,7 @@ class SearchPractitionerTest extends ApiTestCase
     public function searchBySpeciality(int $specialityId)
     {
         $response = static::createClient()
-            ->request('GET', '/api/specialities/'.$specialityId.'/practitioners');
+            ->request('GET', '/api/specialities/' . $specialityId . '/practitioners');
 
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(200);
@@ -108,7 +108,7 @@ class SearchPractitionerTest extends ApiTestCase
             ]
         );
         $response = static::createClient()
-            ->request('GET', '/api/practitioners/'.$practitionerId.'/availabilities');
+            ->request('GET', '/api/practitioners/' . $practitionerId . '/availabilities');
 
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(200);
@@ -147,7 +147,7 @@ class SearchPractitionerTest extends ApiTestCase
     public function getPractitionerLanguages(int $languageId): void
     {
         $response = static::createClient()
-            ->request('GET', '/api/languages/'.$languageId.'/practitioners');
+            ->request('GET', '/api/languages/' . $languageId . '/practitioners');
 
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(200);

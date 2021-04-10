@@ -22,13 +22,13 @@ class AppointmentFixture extends Fixture implements DependentFixtureInterface
         $appointment = new Appointment();
 
         /** @var Availability $availbality */
-        $availbality = $this->getReference(Availability::class.'_'.Availability::BUSY);
+        $availbality = $this->getReference(Availability::class . '_' . Availability::BUSY);
         /** @var Patient $patient */
         $patient = $this->getReference(Patient::class);
         /** @var Practitioner $practitioner */
         $practitioner = $this->getReference(Practitioner::class);
         /** @var Reason $reason */
-        $reason = $this->getReference(Reason::class.'_1');
+        $reason = $this->getReference(Reason::class . '_1');
 
         $appointment->setAvailability($availbality)
             ->setPatient($patient)

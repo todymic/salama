@@ -30,7 +30,7 @@ class AvailabilityFixture extends Fixture implements DependentFixtureInterface
             $availability->setPractitioner($practitioner);
             $availability->setLocality($practitioner->getLocalities()->first());
 
-            $this->setReference(Availability::class.'_'.$availability->getStatus(), $availability);
+            $this->setReference(Availability::class . '_' . $availability->getStatus(), $availability);
 
             $manager->persist($availability);
         }

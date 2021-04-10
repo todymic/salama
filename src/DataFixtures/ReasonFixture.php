@@ -23,7 +23,7 @@ class ReasonFixture extends Fixture implements DependentFixtureInterface
 
             $manager->persist($reason);
 
-            $this->addReference(Reason::class.'_'.$i, $reason);
+            $this->addReference(Reason::class . '_' . $i, $reason);
         }
 
         $manager->flush();

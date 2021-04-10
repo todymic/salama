@@ -38,8 +38,8 @@ final class SecurityContext extends AbstractContext implements Context
      */
     public function loadState(string $name)
     {
-        if (!class_exists('App\DataFixtures\\'.$name.'Fixture')) {
-            throw new InvalidArgumentException($name." don't exist");
+        if (!class_exists('App\DataFixtures\\' . $name . 'Fixture')) {
+            throw new InvalidArgumentException($name . " don't exist");
         }
 
         parent::loadFixture($name, [$this->passwordEncoder]);
