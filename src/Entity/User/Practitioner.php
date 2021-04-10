@@ -105,6 +105,7 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
+     * @param Language $language
      * @return $this
      */
     public function addLanguage(Language $language): self
@@ -117,6 +118,7 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
+     * @param Language $language
      * @return $this
      */
     public function removeLanguage(Language $language): self
@@ -135,6 +137,7 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
+     * @param Speciality $speciality
      * @return $this
      */
     public function addSpeciality(Speciality $speciality): self
@@ -148,6 +151,7 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
+     * @param Speciality $speciality
      * @return $this
      */
     public function removeSpeciality(Speciality $speciality): self
@@ -168,6 +172,7 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
+     * @param Appointment $appointment
      * @return $this
      */
     public function addAppointment(Appointment $appointment): self
@@ -181,6 +186,7 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
+     * @param Appointment $appointment
      * @return $this
      */
     public function removeAppointment(Appointment $appointment): self
@@ -204,6 +210,7 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
+     * @param Availability $availability
      * @return $this
      */
     public function addAvailability(Availability $availability): self
@@ -217,6 +224,7 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
+     * @param Availability $availability
      * @return $this
      */
     public function removeAvailability(Availability $availability): self
@@ -237,6 +245,7 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
+     * @param string|null $description
      * @return $this
      */
     public function setDescription(?string $description): self
@@ -255,6 +264,7 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
+     * @param Locality $locality
      * @return $this
      */
     public function addLocality(Locality $locality): self
@@ -268,6 +278,7 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
+     * @param Locality $locality
      * @return $this
      */
     public function removeLocality(Locality $locality): self
@@ -291,6 +302,7 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
+     * @param Degree $degree
      * @return $this
      */
     public function addDegree(Degree $degree): self
@@ -304,6 +316,7 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
+     * @param Degree $degree
      * @return $this
      */
     public function removeDegree(Degree $degree): self

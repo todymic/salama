@@ -63,6 +63,7 @@ abstract class User
     }
 
     /**
+     * @param string $email
      * @return $this
      */
     public function setEmail(string $email): self
@@ -95,6 +96,7 @@ abstract class User
     }
 
     /**
+     * @param array $roles
      * @return $this
      */
     public function setRoles(array $roles): self
@@ -113,6 +115,7 @@ abstract class User
     }
 
     /**
+     * @param string $password
      * @return $this
      */
     public function setPassword(string $password): self
@@ -145,6 +148,7 @@ abstract class User
     }
 
     /**
+     * @param string $firstName
      * @return $this
      */
     public function setFirstName(string $firstName): self
@@ -160,6 +164,7 @@ abstract class User
     }
 
     /**
+     * @param string $LastName
      * @return $this
      */
     public function setLastName(string $LastName): self

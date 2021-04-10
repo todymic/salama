@@ -101,6 +101,7 @@ class Appointment
     }
 
     /**
+     * @param string $status
      * @return $this
      */
     public function setStatus(string $status): self
@@ -116,6 +117,7 @@ class Appointment
     }
 
     /**
+     * @param string|null $description
      * @return $this
      */
     public function setDescription(?string $description): self
@@ -131,6 +133,7 @@ class Appointment
     }
 
     /**
+     * @param DateTimeInterface $created_at
      * @return $this
      */
     public function setCreatedAt(DateTimeInterface $created_at): self
@@ -146,6 +149,7 @@ class Appointment
     }
 
     /**
+     * @param DateTimeInterface|null $updated_at
      * @return $this
      */
     public function setUpdatedAt(?DateTimeInterface $updated_at): self
@@ -161,6 +165,7 @@ class Appointment
     }
 
     /**
+     * @param DateTimeInterface|null $deleted_at
      * @return $this
      */
     public function setDeletedAt(?DateTimeInterface $deleted_at): self
@@ -176,6 +181,7 @@ class Appointment
     }
 
     /**
+     * @param Practitioner|null $practitioner
      * @return $this
      */
     public function setPractitioner(?Practitioner $practitioner): self
@@ -191,6 +197,7 @@ class Appointment
     }
 
     /**
+     * @param Patient|null $patient
      * @return $this
      */
     public function setPatient(?Patient $patient): self
@@ -206,6 +213,7 @@ class Appointment
     }
 
     /**
+     * @param Reason|null $reason
      * @return $this
      */
     public function setReason(?Reason $reason): self
@@ -221,6 +229,7 @@ class Appointment
     }
 
     /**
+     * @param Availability $availability
      * @return $this
      */
     public function setAvailability(Availability $availability): self
