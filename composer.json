@@ -47,6 +47,7 @@
         "dama/doctrine-test-bundle": "^6.5",
         "friends-of-behat/mink-browserkit-driver": "^1.5",
         "friends-of-behat/symfony-extension": "^2.0",
+        "friendsofphp/php-cs-fixer": "^2.18",
         "lchrusciel/api-test-case": "^5.1",
         "liip/functional-test-bundle": "^4.3",
         "liip/test-fixtures-bundle": "^1.0.0",

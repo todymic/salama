@@ -17,18 +17,17 @@ class LocalityFixture extends Fixture implements DependentFixtureInterface
         /** @var Practitioner $practitioner */
         $practitioner = $this->getReference(Practitioner::class);
 
-
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 50; ++$i) {
             $locality = new Locality();
             $locality->setStreetType($fake->streetSuffix);
             $locality->setStreetName($fake->streetName);
             $locality->setStreetNumber($fake->randomDigit);
             $locality->setCity($fake->city);
             $locality->setCountry($fake->country);
-            $locality->setZipcode((int)$fake->postcode);
+            $locality->setZipcode((int) $fake->postcode);
             $locality->setPractitioner($practitioner);
 
-            $this->addReference(Locality::class . '_' . $i, $locality);
+            $this->addReference(Locality::class.'_'.$i, $locality);
 
             $manager->persist($locality);
         }
@@ -42,7 +41,7 @@ class LocalityFixture extends Fixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-            PractitionerFixture::class
+            PractitionerFixture::class,
         ];
     }
 }

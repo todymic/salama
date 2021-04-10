@@ -12,18 +12,13 @@ use Doctrine\Persistence\ObjectManager;
 use Faker;
 
 /**
- * Class PractitionerFixture
- * @package App\DataFixtures
+ * Class PractitionerFixture.
  */
 class PractitionerFixture extends UserFixture implements DependentFixtureInterface
 {
-
-    /**
-     * @param ObjectManager $manager
-     */
     public function load(ObjectManager $manager)
     {
-        /** @var  $fake */
+        /** @var $fake */
         $fake = Faker\Factory::create();
         $partitionner = new Practitioner();
 
@@ -53,7 +48,7 @@ class PractitionerFixture extends UserFixture implements DependentFixtureInterfa
         $locality->setStreetNumber($fake->randomDigit);
         $locality->setCity($fake->city);
         $locality->setCountry($fake->country);
-        $locality->setZipcode((int)$fake->postcode);
+        $locality->setZipcode((int) $fake->postcode);
 
         $partitionner->addLocality($locality);
 
@@ -61,18 +56,14 @@ class PractitionerFixture extends UserFixture implements DependentFixtureInterfa
 
         $this->addReference(Practitioner::class, $partitionner);
 
-
         $manager->flush();
     }
 
-    /**
-     * @return array
-     */
     public function getDependencies(): array
     {
         return [
             LanguageFixture::class,
-            SpecialityFixture::class
+            SpecialityFixture::class,
         ];
     }
 }

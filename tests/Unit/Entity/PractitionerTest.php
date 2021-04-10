@@ -8,8 +8,7 @@ use App\Entity\Speciality;
 use App\Entity\User\Practitioner;
 
 /**
- * Class PractitionerTest
- * @package App\Tests\Unit\Entity
+ * Class PractitionerTest.
  */
 class PractitionerTest extends EntityTestCase
 {
@@ -24,7 +23,7 @@ class PractitionerTest extends EntityTestCase
         /** @var Practitioner $practitioner */
         $practitioner = $this->entityManager->getRepository(Practitioner::class)->findOneBy(
             [
-                'id' => 1
+                'id' => 1,
             ]
         );
 

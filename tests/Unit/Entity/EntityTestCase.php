@@ -7,8 +7,7 @@ use Liip\TestFixturesBundle\Test\FixturesTrait;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
- * Class EntityTestCase
- * @package App\Tests\Unit\Entity
+ * Class EntityTestCase.
  */
 abstract class EntityTestCase extends KernelTestCase
 {
@@ -19,9 +18,6 @@ abstract class EntityTestCase extends KernelTestCase
      */
     protected $entityManager;
 
-    /**
-     *
-     */
     public function setUp(): void
     {
         $kernel = self::bootKernel();
@@ -31,9 +27,6 @@ abstract class EntityTestCase extends KernelTestCase
             ->getManager();
     }
 
-    /**
-     *
-     */
     protected function tearDown(): void
     {
         parent::tearDown();

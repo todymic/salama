@@ -13,15 +13,12 @@ use Doctrine\Persistence\Mapping\ClassMetadata;
 use Exception;
 use InvalidArgumentException;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
-use Symfony\Component\Console\Input\ArrayInput;
-use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
- * Class SecurityContext
- * @package App\Tests\Behat
+ * Class SecurityContext.
  */
 abstract class AbstractContext implements Context
 {
@@ -54,9 +51,6 @@ abstract class AbstractContext implements Context
 
     /**
      * SecurityContext constructor.
-     * @param KernelInterface $kernel
-     * @param EntityManagerInterface $entityManager
-     * @param Connection $connection
      */
     public function __construct(
         KernelInterface $kernel,
@@ -77,6 +71,7 @@ abstract class AbstractContext implements Context
 
     /**
      * @BeforeScenario
+     *
      * @throws Exception
      */
     public function initDb()
@@ -88,16 +83,12 @@ abstract class AbstractContext implements Context
 //            $schemaTool->createSchema($metaData);
 //        }
 
-
         $this->executeCommand('d:d:drop', ['--force' => true]);
         $this->executeCommand('d:d:create');
         $this->executeCommand('d:sch:create');
     }
 
-
     /**
-     * @param string $commandName
-     * @param array $parameters
      * @throws Exception
      */
     private function executeCommand(string $commandName, array $parameters = [])
@@ -112,19 +103,18 @@ abstract class AbstractContext implements Context
         $commandTester->execute($options);
     }
 
-
     /**
-     * @param string $name
      * @param array $dependecies
+     *
      * @throws InvalidArgumentException
      */
     protected function loadFixture(string $name, $dependecies = [])
     {
-        if (!class_exists('App\DataFixtures\\' . $name . 'Fixture')) {
-            throw new InvalidArgumentException($name . " don't exist");
+        if (!class_exists('App\DataFixtures\\'.$name.'Fixture')) {
+            throw new InvalidArgumentException($name." don't exist");
         }
 
-        $className = 'App\DataFixtures\\' . $name . 'Fixture';
+        $className = 'App\DataFixtures\\'.$name.'Fixture';
 
         $loader = new Loader();
 

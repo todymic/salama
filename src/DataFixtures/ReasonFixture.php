@@ -15,8 +15,7 @@ class ReasonFixture extends Fixture implements DependentFixtureInterface
         /** @var Speciality $speciality */
         $speciality = $this->getReference(Speciality::class);
 
-
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 50; ++$i) {
             $reason = new Reason();
             $reason->setDescription('consultation');
             $reason->setConstant('consultation');
@@ -24,7 +23,7 @@ class ReasonFixture extends Fixture implements DependentFixtureInterface
 
             $manager->persist($reason);
 
-            $this->addReference(Reason::class . '_' . $i, $reason);
+            $this->addReference(Reason::class.'_'.$i, $reason);
         }
 
         $manager->flush();
@@ -36,7 +35,7 @@ class ReasonFixture extends Fixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-            SpecialityFixture::class
+            SpecialityFixture::class,
         ];
     }
 }

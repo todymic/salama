@@ -7,14 +7,10 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
 /**
- * Class LanguageFixture
- * @package App\DataFixtures
+ * Class LanguageFixture.
  */
 class LanguageFixture extends Fixture
 {
-    /**
-     * @param ObjectManager $manager
-     */
     public function load(ObjectManager $manager)
     {
         $language = new Language();
@@ -22,7 +18,6 @@ class LanguageFixture extends Fixture
 
         $this->addReference(Language::class, $language);
         $manager->persist($language);
-
 
         $manager->flush();
     }

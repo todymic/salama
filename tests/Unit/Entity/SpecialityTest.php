@@ -19,7 +19,7 @@ class SpecialityTest extends EntityTestCase
         /** @var Speciality $speciality */
         $speciality = $this->entityManager->getRepository(Speciality::class)->findOneBy(
             [
-                'id' => 1
+                'id' => 1,
             ]
         );
 

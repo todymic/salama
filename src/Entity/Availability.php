@@ -17,8 +17,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
  */
 class Availability
 {
-    public const OPEN = "OPEN";
-    public const BUSY = "BUSY";
+    public const OPEN = 'OPEN';
+    public const BUSY = 'BUSY';
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -63,24 +63,17 @@ class Availability
      */
     private $locality;
 
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return DateTimeInterface|null
-     */
     public function getDay(): ?DateTimeInterface
     {
         return $this->day;
     }
 
     /**
-     * @param DateTimeInterface $day
      * @return $this
      */
     public function setDay(DateTimeInterface $day): self
@@ -90,16 +83,12 @@ class Availability
         return $this;
     }
 
-    /**
-     * @return DateTimeInterface|null
-     */
     public function getHour(): ?DateTimeInterface
     {
         return $this->hour;
     }
 
     /**
-     * @param DateTimeInterface $hour
      * @return $this
      */
     public function setHour(DateTimeInterface $hour): self
@@ -109,16 +98,12 @@ class Availability
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
     /**
-     * @param string $status
      * @return $this
      */
     public function setStatus(string $status): self
@@ -128,16 +113,12 @@ class Availability
         return $this;
     }
 
-    /**
-     * @return Practitioner|null
-     */
     public function getPractitioner(): ?Practitioner
     {
         return $this->practitioner;
     }
 
     /**
-     * @param Practitioner|null $practitioner
      * @return $this
      */
     public function setPractitioner(?Practitioner $practitioner): self
@@ -147,17 +128,12 @@ class Availability
         return $this;
     }
 
-
-    /**
-     * @return Appointment|null
-     */
     public function getAppointment(): ?Appointment
     {
         return $this->appointment;
     }
 
     /**
-     * @param Appointment $appointment
      * @return $this
      */
     public function setAppointment(Appointment $appointment): self
@@ -172,16 +148,12 @@ class Availability
         return $this;
     }
 
-    /**
-     * @return Locality|null
-     */
     public function getLocality(): ?Locality
     {
         return $this->locality;
     }
 
     /**
-     * @param Locality|null $locality
      * @return $this
      */
     public function setLocality(?Locality $locality): self

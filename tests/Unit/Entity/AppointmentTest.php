@@ -10,8 +10,7 @@ use App\Entity\User\Practitioner;
 use DateTime;
 
 /**
- * Class AppointmentTest
- * @package App\Tests\Unit\Entity
+ * Class AppointmentTest.
  */
 class AppointmentTest extends EntityTestCase
 {
@@ -26,7 +25,7 @@ class AppointmentTest extends EntityTestCase
         /** @var Appointment $appointment */
         $appointment = $this->entityManager->getRepository(Appointment::class)->findOneBy(
             [
-                'id' => 1
+                'id' => 1,
             ]
         );
 
@@ -45,7 +44,6 @@ class AppointmentTest extends EntityTestCase
 
         $this->assertInstanceOf(Availability::class, $appointment->getAvailability());
         $this->assertEquals(Availability::BUSY, $appointment->getAvailability()->getStatus());
-
 
         $this->assertEquals((new DateTime())->format('Y-m-d'), $appointment->getCreatedAt()->format('Y-m-d'));
         $this->assertNull($appointment->getDeletedAt());

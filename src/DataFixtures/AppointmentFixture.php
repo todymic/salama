@@ -13,26 +13,22 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
 /**
- * Class AppointmentFixture
- * @package App\DataFixtures
+ * Class AppointmentFixture.
  */
 class AppointmentFixture extends Fixture implements DependentFixtureInterface
 {
-    /**
-     * @param ObjectManager $manager
-     */
     public function load(ObjectManager $manager)
     {
         $appointment = new Appointment();
 
         /** @var Availability $availbality */
-        $availbality = $this->getReference(Availability::class . '_' . Availability::BUSY);
+        $availbality = $this->getReference(Availability::class.'_'.Availability::BUSY);
         /** @var Patient $patient */
         $patient = $this->getReference(Patient::class);
         /** @var Practitioner $practitioner */
         $practitioner = $this->getReference(Practitioner::class);
         /** @var Reason $reason */
-        $reason = $this->getReference(Reason::class . '_1');
+        $reason = $this->getReference(Reason::class.'_1');
 
         $appointment->setAvailability($availbality)
             ->setPatient($patient)
@@ -58,7 +54,7 @@ class AppointmentFixture extends Fixture implements DependentFixtureInterface
             PatientFixture::class,
             PractitionerFixture::class,
             ReasonFixture::class,
-            AvailabilityFixture::class
+            AvailabilityFixture::class,
         ];
     }
 }

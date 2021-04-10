@@ -4,7 +4,6 @@ namespace App\Tests\Api;
 
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 use App\Entity\Availability;
-use App\Entity\Language;
 use App\Entity\User\Practitioner;
 use Doctrine\Persistence\ObjectManager;
 use Liip\TestFixturesBundle\Test\FixturesTrait;
@@ -15,8 +14,7 @@ use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 /**
- * Class SearchPractitionerTest
- * @package App\Tests\Api
+ * Class SearchPractitionerTest.
  */
 class SearchPractitionerTest extends ApiTestCase
 {
@@ -27,9 +25,6 @@ class SearchPractitionerTest extends ApiTestCase
      */
     protected $entityManager;
 
-    /**
-     *
-     */
     public function setUp(): void
     {
         $kernel = self::bootKernel();
@@ -69,7 +64,7 @@ class SearchPractitionerTest extends ApiTestCase
     /**
      * @test
      * @dataProvider specialityProvider
-     * @param int $specialityId
+     *
      * @throws TransportExceptionInterface
      * @throws ClientExceptionInterface
      * @throws DecodingExceptionInterface
@@ -79,7 +74,7 @@ class SearchPractitionerTest extends ApiTestCase
     public function searchBySpeciality(int $specialityId)
     {
         $response = static::createClient()
-            ->request('GET', '/api/specialities/' . $specialityId . '/practitioners');
+            ->request('GET', '/api/specialities/'.$specialityId.'/practitioners');
 
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(200);
@@ -88,20 +83,17 @@ class SearchPractitionerTest extends ApiTestCase
         $this->assertMatchesResourceCollectionJsonSchema(Practitioner::class);
     }
 
-    /**
-     * @return array
-     */
     public function specialityProvider(): array
     {
         return [
-            [1]
+            [1],
         ];
     }
 
     /**
      * @test
      * @dataProvider practitionerProvider
-     * @param int $practitionerId
+     *
      * @throws ClientExceptionInterface
      * @throws DecodingExceptionInterface
      * @throws RedirectionExceptionInterface
@@ -116,7 +108,7 @@ class SearchPractitionerTest extends ApiTestCase
             ]
         );
         $response = static::createClient()
-            ->request('GET', '/api/practitioners/' . $practitionerId . '/availabilities');
+            ->request('GET', '/api/practitioners/'.$practitionerId.'/availabilities');
 
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(200);
@@ -131,24 +123,21 @@ class SearchPractitionerTest extends ApiTestCase
     public function practitionerProvider(): array
     {
         return [
-            [1]
+            [1],
         ];
     }
 
-    /**
-     * @return array
-     */
     public function languageProvider(): array
     {
         return [
-            [1]
+            [1],
         ];
     }
 
     /**
-     * @param int $languageId
      * @test
      * @dataProvider languageProvider
+     *
      * @throws ClientExceptionInterface
      * @throws DecodingExceptionInterface
      * @throws RedirectionExceptionInterface
@@ -158,7 +147,7 @@ class SearchPractitionerTest extends ApiTestCase
     public function getPractitionerLanguages(int $languageId): void
     {
         $response = static::createClient()
-            ->request('GET', '/api/languages/' . $languageId . '/practitioners');
+            ->request('GET', '/api/languages/'.$languageId.'/practitioners');
 
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(200);

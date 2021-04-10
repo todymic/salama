@@ -11,16 +11,15 @@ use App\Entity\Language;
 use App\Entity\Locality;
 use App\Entity\Speciality;
 use App\Entity\User;
+use App\Repository\PractitionerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
-use App\Repository\PractitionerRepository;
 
 /**
- * Class Practitioner
+ * Class Practitioner.
  *
- * @package App\Entity\User
  * @ApiResource(
  *      subresourceOperations={
  *       "availabilities_get_subresource"={
@@ -35,7 +34,6 @@ use App\Repository\PractitionerRepository;
  */
 class Practitioner extends User implements UserInterface
 {
-
     /**
      * @ORM\ManyToMany(targetEntity=Language::class, inversedBy="practitioners")
      * @ORM\JoinTable(name="practitioners_languages",
@@ -47,7 +45,6 @@ class Practitioner extends User implements UserInterface
 
     /**
      * @ORM\ManyToMany(targetEntity=Speciality::class, mappedBy="practitioners")
-     *
      */
     private $specialities;
 
@@ -108,7 +105,6 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
-     * @param Language $language
      * @return $this
      */
     public function addLanguage(Language $language): self
@@ -121,7 +117,6 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
-     * @param Language $language
      * @return $this
      */
     public function removeLanguage(Language $language): self
@@ -140,7 +135,6 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
-     * @param Speciality $speciality
      * @return $this
      */
     public function addSpeciality(Speciality $speciality): self
@@ -154,7 +148,6 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
-     * @param Speciality $speciality
      * @return $this
      */
     public function removeSpeciality(Speciality $speciality): self
@@ -175,7 +168,6 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
-     * @param Appointment $appointment
      * @return $this
      */
     public function addAppointment(Appointment $appointment): self
@@ -189,7 +181,6 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
-     * @param Appointment $appointment
      * @return $this
      */
     public function removeAppointment(Appointment $appointment): self
@@ -213,7 +204,6 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
-     * @param Availability $availability
      * @return $this
      */
     public function addAvailability(Availability $availability): self
@@ -227,7 +217,6 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
-     * @param Availability $availability
      * @return $this
      */
     public function removeAvailability(Availability $availability): self
@@ -242,16 +231,12 @@ class Practitioner extends User implements UserInterface
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
     /**
-     * @param string|null $description
      * @return $this
      */
     public function setDescription(?string $description): self
@@ -270,7 +255,6 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
-     * @param Locality $locality
      * @return $this
      */
     public function addLocality(Locality $locality): self
@@ -284,7 +268,6 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
-     * @param Locality $locality
      * @return $this
      */
     public function removeLocality(Locality $locality): self
@@ -308,7 +291,6 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
-     * @param Degree $degree
      * @return $this
      */
     public function addDegree(Degree $degree): self
@@ -322,7 +304,6 @@ class Practitioner extends User implements UserInterface
     }
 
     /**
-     * @param Degree $degree
      * @return $this
      */
     public function removeDegree(Degree $degree): self

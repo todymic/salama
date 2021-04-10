@@ -21,7 +21,6 @@ class PractitionerRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param Language $language
      * @return Practitioner[]
      */
     public function findPractitionersByLanguage(Language $language): array
@@ -30,6 +29,7 @@ class PractitionerRepository extends ServiceEntityRepository
             ->innerJoin('p.languages', 'l', 'WITH', 'l.id = :languageId')
             ->setParameter('languageId', $language->getId())
             ->getQuery();
+
         return $query->getResult();
     }
 }

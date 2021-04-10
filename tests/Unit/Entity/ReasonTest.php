@@ -21,7 +21,7 @@ class ReasonTest extends EntityTestCase
         /** @var Reason $reason */
         $reason = $this->entityManager->getRepository(Reason::class)->findOneBy(
             [
-                'id' => 1
+                'id' => 1,
             ]
         );
 

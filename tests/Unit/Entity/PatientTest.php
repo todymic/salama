@@ -17,7 +17,7 @@ class PatientTest extends EntityTestCase
         /** @var Patient $patient */
         $patient = $this->entityManager->getRepository(Patient::class)->findOneBy(
             [
-                'id' => 1
+                'id' => 1,
             ]
         );
 

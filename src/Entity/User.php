@@ -52,24 +52,17 @@ abstract class User
      */
     protected $lastName;
 
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return string|null
-     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
     /**
-     * @param string $email
      * @return $this
      */
     public function setEmail(string $email): self
@@ -86,7 +79,7 @@ abstract class User
      */
     public function getUsername(): string
     {
-        return (string)$this->email;
+        return (string) $this->email;
     }
 
     /**
@@ -102,7 +95,6 @@ abstract class User
     }
 
     /**
-     * @param array $roles
      * @return $this
      */
     public function setRoles(array $roles): self
@@ -117,11 +109,10 @@ abstract class User
      */
     public function getPassword(): string
     {
-        return (string)$this->password;
+        return (string) $this->password;
     }
 
     /**
-     * @param string $password
      * @return $this
      */
     public function setPassword(string $password): self
@@ -148,16 +139,12 @@ abstract class User
         // $this->plainPassword = null;
     }
 
-    /**
-     * @return string|null
-     */
     public function getFirstName(): ?string
     {
         return $this->firstName;
     }
 
     /**
-     * @param string $firstName
      * @return $this
      */
     public function setFirstName(string $firstName): self
@@ -167,16 +154,12 @@ abstract class User
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLastName(): ?string
     {
         return $this->lastName;
     }
 
     /**
-     * @param string $LastName
      * @return $this
      */
     public function setLastName(string $LastName): self

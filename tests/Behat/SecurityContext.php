@@ -12,12 +12,10 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Webmozart\Assert\Assert;
 
 /**
- * Class SecurityContext
- * @package App\Tests\Behat
+ * Class SecurityContext.
  */
 final class SecurityContext extends AbstractContext implements Context
 {
-
     /**
      * @var UserPasswordEncoderInterface
      */
@@ -36,13 +34,12 @@ final class SecurityContext extends AbstractContext implements Context
     /**
      * @Given the :name state
      *
-     * @param string $name
      * @throws InvalidArgumentException
      */
     public function loadState(string $name)
     {
-        if (!class_exists('App\DataFixtures\\' . $name . 'Fixture')) {
-            throw new InvalidArgumentException($name . " don't exist");
+        if (!class_exists('App\DataFixtures\\'.$name.'Fixture')) {
+            throw new InvalidArgumentException($name." don't exist");
         }
 
         parent::loadFixture($name, [$this->passwordEncoder]);
@@ -52,7 +49,7 @@ final class SecurityContext extends AbstractContext implements Context
             ->getRepository(Practitioner::class);
         $practitioner = $practitionerRepo->findOneBy(
             [
-                'id' => 1
+                'id' => 1,
             ]
         );
 
