@@ -16,15 +16,16 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Appointment
 {
-    public const CONFIRMED_PRACTITIONER_STATUS = 'CONFIRMED_PRACTITIONER';
 
-    public const WAITING_PRACTITIONER_STATUS = 'WAITING_PRACTITIONER';
+    public const CONFIRMED_PRACTITIONER_STATUS = "CONFIRMED_PRACTITIONER";
 
-    public const CANCELLED_PRACTITIONER_STATUS = 'CANCELLED_PRACTITIONER';
+    public const WAITING_PRACTITIONER_STATUS = "WAITING_PRACTITIONER";
 
-    public const MODIFIED_PRACTITIONER_STATUS = 'MODIFIED_PRACTITIONER';
+    public const CANCELLED_PRACTITIONER_STATUS = "CANCELLED_PRACTITIONER";
 
-    public const CANCELLED_PATIENT_STATUS = 'CANCELLED_PATIENT';
+    public const MODIFIED_PRACTITIONER_STATUS = "MODIFIED_PRACTITIONER";
+
+    public const CANCELLED_PATIENT_STATUS = "CANCELLED_PATIENT";
 
     /**
      * @ORM\Id
@@ -37,6 +38,11 @@ class Appointment
      * @ORM\Column(type="string",
      *     length=255,
      *     columnDefinition="ENUM(
+    'CONFIRMED_PRACTITIONER',
+    'WAITING_PRACTITIONER',
+    'CANCELLED_PRACTITIONER',
+    'MODIFIED_PRACTITIONER',
+    'CANCELLED_PATIENT'
     )"
      * )
      */
@@ -90,11 +96,17 @@ class Appointment
         $this->created_at = new DateTime();
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getStatus(): ?string
     {
         return $this->status;
@@ -111,6 +123,9 @@ class Appointment
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getDescription(): ?string
     {
         return $this->description;
@@ -127,6 +142,9 @@ class Appointment
         return $this;
     }
 
+    /**
+     * @return DateTimeInterface|null
+     */
     public function getCreatedAt(): ?DateTimeInterface
     {
         return $this->created_at;
@@ -143,6 +161,9 @@ class Appointment
         return $this;
     }
 
+    /**
+     * @return DateTimeInterface|null
+     */
     public function getUpdatedAt(): ?DateTimeInterface
     {
         return $this->updated_at;
@@ -159,6 +180,9 @@ class Appointment
         return $this;
     }
 
+    /**
+     * @return DateTimeInterface|null
+     */
     public function getDeletedAt(): ?DateTimeInterface
     {
         return $this->deleted_at;
@@ -175,6 +199,9 @@ class Appointment
         return $this;
     }
 
+    /**
+     * @return Practitioner|null
+     */
     public function getPractitioner(): ?Practitioner
     {
         return $this->practitioner;
@@ -191,6 +218,9 @@ class Appointment
         return $this;
     }
 
+    /**
+     * @return Patient|null
+     */
     public function getPatient(): ?Patient
     {
         return $this->patient;
@@ -207,6 +237,9 @@ class Appointment
         return $this;
     }
 
+    /**
+     * @return Reason|null
+     */
     public function getReason(): ?Reason
     {
         return $this->reason;
@@ -223,6 +256,9 @@ class Appointment
         return $this;
     }
 
+    /**
+     * @return Availability|null
+     */
     public function getAvailability(): ?Availability
     {
         return $this->availability;
