@@ -45,6 +45,7 @@ class Speciality
      *      joinColumns={@ORM\JoinColumn(name="speciality_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="practitioner_id", referencedColumnName="id")}
      * )
+     *
      */
     private $practitioners;
 
@@ -71,6 +72,9 @@ class Speciality
         $this->reasons = new ArrayCollection();
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
@@ -85,6 +89,7 @@ class Speciality
     }
 
     /**
+     * @param Practitioner $practitioner
      * @return $this
      */
     public function addPractitioner(Practitioner $practitioner): self
@@ -97,6 +102,7 @@ class Speciality
     }
 
     /**
+     * @param Practitioner $practitioner
      * @return $this
      */
     public function removePractitioner(Practitioner $practitioner): self
@@ -115,6 +121,7 @@ class Speciality
     }
 
     /**
+     * @param Reason $reason
      * @return $this
      */
     public function addReason(Reason $reason): self
@@ -128,6 +135,7 @@ class Speciality
     }
 
     /**
+     * @param Reason $reason
      * @return $this
      */
     public function removeReason(Reason $reason): self
@@ -142,12 +150,16 @@ class Speciality
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
     /**
+     * @param string $title
      * @return $this
      */
     public function setTitle(string $title): self

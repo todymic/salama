@@ -8,6 +8,7 @@ use Faker;
 
 class PatientFixture extends UserFixture
 {
+
     public function load(ObjectManager $manager)
     {
         /** @var $fake */

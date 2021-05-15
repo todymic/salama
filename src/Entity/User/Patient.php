@@ -58,6 +58,7 @@ class Patient extends User implements UserInterface
     }
 
     /**
+     * @param Appointment $appointment
      * @return $this
      */
     public function addAppointment(Appointment $appointment): self
@@ -71,6 +72,7 @@ class Patient extends User implements UserInterface
     }
 
     /**
+     * @param Appointment $appointment
      * @return $this
      */
     public function removeAppointment(Appointment $appointment): self
@@ -85,17 +87,24 @@ class Patient extends User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getGender(): ?string
     {
         return $this->gender;
     }
 
     /**
+     * @param string $gender
      * @return $this
      */
     public function setGender(string $gender): self
@@ -105,12 +114,16 @@ class Patient extends User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getCivility(): ?string
     {
         return $this->civility;
     }
 
     /**
+     * @param string $civility
      * @return $this
      */
     public function setCivility(string $civility): self

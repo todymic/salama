@@ -16,15 +16,16 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Appointment
 {
-    public const CONFIRMED_PRACTITIONER_STATUS = 'CONFIRMED_PRACTITIONER';
 
-    public const WAITING_PRACTITIONER_STATUS = 'WAITING_PRACTITIONER';
+    public const CONFIRMED_PRACTITIONER_STATUS = "CONFIRMED_PRACTITIONER";
 
-    public const CANCELLED_PRACTITIONER_STATUS = 'CANCELLED_PRACTITIONER';
+    public const WAITING_PRACTITIONER_STATUS = "WAITING_PRACTITIONER";
 
-    public const MODIFIED_PRACTITIONER_STATUS = 'MODIFIED_PRACTITIONER';
+    public const CANCELLED_PRACTITIONER_STATUS = "CANCELLED_PRACTITIONER";
 
-    public const CANCELLED_PATIENT_STATUS = 'CANCELLED_PATIENT';
+    public const MODIFIED_PRACTITIONER_STATUS = "MODIFIED_PRACTITIONER";
+
+    public const CANCELLED_PATIENT_STATUS = "CANCELLED_PATIENT";
 
     /**
      * @ORM\Id
@@ -37,6 +38,11 @@ class Appointment
      * @ORM\Column(type="string",
      *     length=255,
      *     columnDefinition="ENUM(
+    'CONFIRMED_PRACTITIONER',
+    'WAITING_PRACTITIONER',
+    'CANCELLED_PRACTITIONER',
+    'MODIFIED_PRACTITIONER',
+    'CANCELLED_PATIENT'
     )"
      * )
      */
@@ -90,17 +96,24 @@ class Appointment
         $this->created_at = new DateTime();
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
     /**
+     * @param string $status
      * @return $this
      */
     public function setStatus(string $status): self
@@ -110,12 +123,16 @@ class Appointment
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
     /**
+     * @param string|null $description
      * @return $this
      */
     public function setDescription(?string $description): self
@@ -125,12 +142,16 @@ class Appointment
         return $this;
     }
 
+    /**
+     * @return DateTimeInterface|null
+     */
     public function getCreatedAt(): ?DateTimeInterface
     {
         return $this->created_at;
     }
 
     /**
+     * @param DateTimeInterface $created_at
      * @return $this
      */
     public function setCreatedAt(DateTimeInterface $created_at): self
@@ -140,12 +161,16 @@ class Appointment
         return $this;
     }
 
+    /**
+     * @return DateTimeInterface|null
+     */
     public function getUpdatedAt(): ?DateTimeInterface
     {
         return $this->updated_at;
     }
 
     /**
+     * @param DateTimeInterface|null $updated_at
      * @return $this
      */
     public function setUpdatedAt(?DateTimeInterface $updated_at): self
@@ -155,12 +180,16 @@ class Appointment
         return $this;
     }
 
+    /**
+     * @return DateTimeInterface|null
+     */
     public function getDeletedAt(): ?DateTimeInterface
     {
         return $this->deleted_at;
     }
 
     /**
+     * @param DateTimeInterface|null $deleted_at
      * @return $this
      */
     public function setDeletedAt(?DateTimeInterface $deleted_at): self
@@ -170,12 +199,16 @@ class Appointment
         return $this;
     }
 
+    /**
+     * @return Practitioner|null
+     */
     public function getPractitioner(): ?Practitioner
     {
         return $this->practitioner;
     }
 
     /**
+     * @param Practitioner|null $practitioner
      * @return $this
      */
     public function setPractitioner(?Practitioner $practitioner): self
@@ -185,12 +218,16 @@ class Appointment
         return $this;
     }
 
+    /**
+     * @return Patient|null
+     */
     public function getPatient(): ?Patient
     {
         return $this->patient;
     }
 
     /**
+     * @param Patient|null $patient
      * @return $this
      */
     public function setPatient(?Patient $patient): self
@@ -200,12 +237,16 @@ class Appointment
         return $this;
     }
 
+    /**
+     * @return Reason|null
+     */
     public function getReason(): ?Reason
     {
         return $this->reason;
     }
 
     /**
+     * @param Reason|null $reason
      * @return $this
      */
     public function setReason(?Reason $reason): self
@@ -215,12 +256,16 @@ class Appointment
         return $this;
     }
 
+    /**
+     * @return Availability|null
+     */
     public function getAvailability(): ?Availability
     {
         return $this->availability;
     }
 
     /**
+     * @param Availability $availability
      * @return $this
      */
     public function setAvailability(Availability $availability): self
