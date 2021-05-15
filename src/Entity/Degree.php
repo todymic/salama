@@ -29,24 +29,17 @@ class Degree
      */
     private $practitioner;
 
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return string|null
-     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
     /**
-     * @param string $title
      * @return $this
      */
     public function setTitle(string $title): self
@@ -56,16 +49,12 @@ class Degree
         return $this;
     }
 
-    /**
-     * @return Practitioner|null
-     */
     public function getPractitioner(): ?Practitioner
     {
         return $this->practitioner;
     }
 
     /**
-     * @param Practitioner|null $practitioner
      * @return $this
      */
     public function setPractitioner(?Practitioner $practitioner): self

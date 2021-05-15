@@ -21,7 +21,6 @@ class PractitionerRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param Language $language
      * @return Practitioner[]
      */
     public function findPractitionersByLanguage(Language $language): array

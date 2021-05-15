@@ -74,7 +74,6 @@ class Availability
     }
 
     /**
-     * @param DateTimeInterface $day
      * @return $this
      */
     public function setDay(DateTimeInterface $day): self
@@ -90,7 +89,6 @@ class Availability
     }
 
     /**
-     * @param DateTimeInterface $hour
      * @return $this
      */
     public function setHour(DateTimeInterface $hour): self
@@ -106,7 +104,6 @@ class Availability
     }
 
     /**
-     * @param string $status
      * @return $this
      */
     public function setStatus(string $status): self
@@ -122,7 +119,6 @@ class Availability
     }
 
     /**
-     * @param Practitioner|null $practitioner
      * @return $this
      */
     public function setPractitioner(?Practitioner $practitioner): self
@@ -138,7 +134,6 @@ class Availability
     }
 
     /**
-     * @param Appointment $appointment
      * @return $this
      */
     public function setAppointment(Appointment $appointment): self
@@ -159,7 +154,6 @@ class Availability
     }
 
     /**
-     * @param Locality|null $locality
      * @return $this
      */
     public function setLocality(?Locality $locality): self

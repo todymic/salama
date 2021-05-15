@@ -15,7 +15,6 @@ abstract class UserFixture extends Fixture
 
     /**
      * UserFixture constructor.
-     * @param UserPasswordEncoderInterface|null $passwordEncoder
      */
     public function __construct(?UserPasswordEncoderInterface $passwordEncoder)
     {

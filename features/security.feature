@@ -9,5 +9,5 @@ Feature: Security API
     Then the response should be in JSON
     And the JSON should be valid according to this schema:
     """
-    {"qsdfqsdfqf": "fqsdfqsdf"}
+    {"": ""}
     """
