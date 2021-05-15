@@ -18,6 +18,7 @@
         "lexik/jwt-authentication-bundle": "^2.10",
         "nelmio/cors-bundle": "^2.1",
         "phpdocumentor/reflection-docblock": "^5.2",
+      "stof/doctrine-extensions-bundle": "^1.6",
         "symfony/apache-pack": "*",
         "symfony/asset": "5.2.*",
         "symfony/browser-kit": "^5.2",

@@ -23,6 +23,9 @@
         <testsuite name="api">
             <directory>tests/Api</directory>
         </testsuite>
+        <testsuite name="repository">
+            <directory>tests/Repository</directory>
+        </testsuite>
     </testsuites>
 
     <filter>
